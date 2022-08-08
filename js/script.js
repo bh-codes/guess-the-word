@@ -68,5 +68,45 @@ const makeGuess = function(letter) {
     } else {
         guessedLetters.push(letter);
         console.log(guessedLetters);
+        showGuessedLetters();
+        updateWordInProgress(guessedLetters);
     };
 };
+
+//show guessed letters on page
+const showGuessedLetters = function() {
+    playersGuessedLetters.innerHTML = "";
+
+    for (const letter of guessedLetters) {
+        const li = document.createElement("li");
+        li.innerText = letter;
+        playersGuessedLetters.append(li);
+    };
+};
+
+//update word in progress
+const updateWordInProgress = function(guessedLetters) {
+    const wordUpper = word.toUpperCase();
+    const wordArray = wordUpper.split("");
+    console.log(wordArray);
+
+    const updatedLetters = [];
+
+    for (const letter of wordArray) {
+        if (guessedLetters.includes(letter)) {
+            updatedLetters.push(letter);
+        } else {
+            updatedLetters.push("●");
+        };
+        wordInProgress.innerText = updatedLetters.join("");
+    };
+    ifWin();
+};
+
+//check if player won
+const ifWin = function() {
+    if (word.toUpperCase() === wordInProgress.innerText) {
+        message.classList.add("win");
+        message.innerHTML = `<p class="highlight">You guessed correct the word! Congrats!</p>`;
+    };
+}
