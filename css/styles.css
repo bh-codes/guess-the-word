@@ -1,4 +1,5 @@
 * {
+  color: #A7F3FC;
   box-sizing: border-box;
 }
 
@@ -7,20 +8,21 @@ body {
   align-items: center;
   justify-content: center;
   margin: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Raleway", sans-sans-serif;
   font-style: normal;
   font-size: 20px;
   line-height: 150%;
   background-color: #dff6f6;
-  background-image: url("../img/bg.png");
-  background-size: 800px;
-  background-repeat: repeat;
+  background-image: url("../img/wallpaper.jpg");
+  background-size: 2000px;
+  background-repeat: no-repeat;
   color: #305050;
 }
 
 .logo {
-  width: 70%;
-  max-width: 484px;
+  width: 50%;
+  max-width: 400px;
+  max-height: 300px;
 }
 
 h1 {
@@ -51,7 +53,7 @@ h1 {
 
 .highlight {
   padding: 0.25em;
-  background: #ffe2d6;
+  background: #613C9C;
   font-size: 1em;
 }
 
@@ -62,7 +64,8 @@ h1 {
 
 .word-in-progress {
   letter-spacing: 15px;
-  color: #28bdbd;
+  color: #E8FDFF;
+  font-family: "Open Sans", sans-serif;
   font-size: 30px;
 }
 
@@ -94,6 +97,7 @@ h1 {
 }
 
 input {
+  color: #344975;
   width: 2.25em;
   text-align: center;
   font-size: 1.5em;
@@ -114,7 +118,7 @@ input:focus {
   border-radius: 50px;
   margin-top: 1em;
   color: #fff;
-  background: #ff8d5c;
+  background: #613C9C;
   font-size: 1em;
   align-self: center;
   outline: none;
@@ -137,7 +141,7 @@ input:focus {
 /* animatied background */
 .win {
   padding: 0 1em;
-  background: linear-gradient(-45deg, #ff9d64, #f5620c);
+  background: linear-gradient(-45deg, #682C8E, #38164E);
   background-size: 400% 400%;
   animation: gradient 2s ease infinite;
 }
