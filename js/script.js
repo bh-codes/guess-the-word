@@ -151,19 +151,9 @@ const ifWin = function() {
     if (word.toUpperCase() === wordInProgress.innerText) {
         message.classList.add("win");
         message.innerHTML = `<p class="highlight">You guessed correct the word! Congrats!</p>`;
-        // message.style.color = #2C4270;
         startOver();
     };
-    startConfetti();
 };
-
-// const ifLose = function() {
-//     if (word.toUpperCase() !== wordInProgress.innerText) {
-//         message.classList.add("win");
-//         message.innerHTML = `<p class="highlight">You guessed correct the word! Congrats!</p>`;
-//         startOver();
-//     };
-// };
 
 const startOver = function() {
     guessButton.classList.add("hide");
