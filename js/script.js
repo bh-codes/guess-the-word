@@ -154,7 +154,6 @@ const ifWin = function() {
         // message.style.color = #2C4270;
         startOver();
     };
-    startConfetti();
 };
 
 const startOver = function() {
