@@ -155,7 +155,6 @@ const ifWin = function() {
     };
 };
 
-//removed extras//
 
 const startOver = function() {
     guessButton.classList.add("hide");
