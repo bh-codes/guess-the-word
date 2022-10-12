@@ -23,16 +23,16 @@ let remainingGuesses = 8;
 const getWord = async function() {
     const data = await fetch("https://gist.githubusercontent.com/skillcrush-curriculum/7061f1d4d3d5bfe47efbfbcfe42bf57e/raw/5ffc447694486e7dea686f34a6c085ae371b43fe/words.txt");
     const words = await data.text();
-    console.log(words);
 
     const wordArray = words.split("\n");
-    console.log(wordArray)
 
     const randomWord = Math.floor(Math.random() * wordArray.length);
     word = wordArray[randomWord].trim();
 
     placeholder(word);
 };
+
+getWord();
 
 //holds place of letters with dot
 const placeholder = function(word) {
@@ -44,8 +44,6 @@ const placeholder = function(word) {
     };
     wordInProgress.innerText = placeholderLetters.join("");
 };
-
-getWord();
 
 //guess button
 guessButton.addEventListener("click", function (e) {
@@ -71,13 +69,13 @@ const validateInput = function(input) {
     const acceptedLetter = /[a-zA-Z]/;
 
     if (input.length === 0) {
-        message.innerText = "Empty! Please enter a letter.";
+        message.innerText = "Empty! Please enter a letter."; //empty input
     } else if (input.length > 1) {
-        message.innerText = "Too many! Only one letter.";
+        message.innerText = "Too many! Only one letter."; //too many characters in box
     } else if (!input.match(acceptedLetter)) {
-        message.innerText = "Not valid. Only A to Z.";
+        message.innerText = "Not valid. Only A to Z."; //non-letter was tried
     } else {
-        return input;
+        return input; //acceptable input! 
     };
 };
 
@@ -111,19 +109,19 @@ const showGuessedLetters = function() {
 const updateWordInProgress = function(guessedLetters) {
     const wordUpper = word.toUpperCase();
     const wordArray = wordUpper.split("");
-    console.log(wordArray);
+    // console.log(wordArray);
 
     const updatedLetters = [];
 
     for (const letter of wordArray) {
         if (guessedLetters.includes(letter)) {
-            updatedLetters.push(letter);
+            updatedLetters.push(letter.toUpperCase());
         } else {
             updatedLetters.push("●");
         };
+    };    
         wordInProgress.innerText = updatedLetters.join("");
-    };
-    ifWin();
+        ifWin();
 };
 
 //count remaining guesses 
@@ -138,7 +136,8 @@ const guessRemaining = function(guess) {
     };
 
     if (remainingGuesses === 0) {
-        message.innerHTML = `Game over. The word was <span class="highlight">${word}</span>.`
+        message.innerHTML = `Game over. The word was <span class="highlight">${word}</span>.`;
+        startOver();
     } else if (remainingGuesses === 1) {
         remainingGuessesSpan.innerText = `${remainingGuesses} guess`;
     } else {
@@ -151,10 +150,10 @@ const ifWin = function() {
     if (word.toUpperCase() === wordInProgress.innerText) {
         message.classList.add("win");
         message.innerHTML = `<p class="highlight">You guessed correct the word! Congrats!</p>`;
-        // message.style.color = #2C4270;
         startOver();
     };
 };
+
 
 const startOver = function() {
     guessButton.classList.add("hide");
@@ -166,16 +165,16 @@ const startOver = function() {
 //play again button
 playAgainButton.addEventListener("click", function() {
     message.classList.remove("win");
-    message.innerText = "";
+    guessedLetters = [];
     playersGuessedLetters.innerHTML = "";
     remainingGuesses = 8;
-    guessedLetters = [];
-    remainingGuessesSpan.innerHTML = `${remainingGuesses} guesses`;
+    remainingGuessesSpan.innerText = `${remainingGuesses} guesses`;
+    message.innerText = "";
+    
+    getWord();
 
     guessButton.classList.remove("hide");
     remainingGuessesElement.classList.remove("hide");
     playersGuessedLetters.classList.remove("hide");
-    playAgainButton.classList.add("hide");
-
-    getWord();
+    playAgainButton.classList.add("hide"); 
 });
